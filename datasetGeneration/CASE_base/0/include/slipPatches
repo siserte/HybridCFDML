@@ -1,0 +1,14 @@
+    side1
+    {
+        type slip;
+    }
+
+    side2
+    {
+        type slip;
+    }
+
+    top
+    {
+        type slip;
+    }

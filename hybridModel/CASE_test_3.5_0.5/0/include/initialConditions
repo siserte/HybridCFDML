@@ -1,0 +1,15 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+
+flowVelocity         (0 0 0);
+pressure             0;
+turbulentKE          0.4; //4.4*Modificar por valores experimentales [m2/s2]
+turbulentEpsilon     2; //226*Modificar por valores experimentales [m2/s3]
+turbulentNut         0;
+
+// ************************************************************************* //

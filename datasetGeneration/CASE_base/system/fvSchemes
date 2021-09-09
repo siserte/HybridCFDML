@@ -1,0 +1,71 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSchemes;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+//How to discretize in time and space each term of the governing equations
+
+ddtSchemes //time discretization
+{
+    default             Euler;
+}
+
+gradSchemes //gradient term discretization
+{
+    default             Gauss linear;
+    grad(U)             Gauss linear;
+    grad(p)             Gauss linear;
+    //grad(U)             cellMDLimited Gauss linear 1;
+
+}
+
+divSchemes //convective terms discretization
+{
+
+    default             none; 
+
+    div(phi,T)          Gauss limitedLinear 1;
+    div(phi,U)          Gauss linearUpwind grad(U);
+    div(phi,k)           Gauss limitedLinear 1;
+    //div(phi,epsilon)     Gauss upwind;
+    div(phi,omega)       Gauss limitedLinear 1;
+    div((nuEff*dev2(T(grad(U))))) Gauss linear;
+
+
+
+}
+
+laplacianSchemes //diffusion terms discretization 
+{
+    //default         Gauss linear orthogonal;
+    default             Gauss linear limited corrected 0.5;
+}
+
+interpolationSchemes //interpolation values from cell centers to face centers
+{
+    default             linear;
+}
+
+snGradSchemes //discretization of the surface normal gradients evaluated at the faces
+{
+    default             corrected;
+    //default         orthogonal;
+}
+
+wallDist
+{
+    method              meshWave;
+}
+
+
+// ************************************************************************* //

@@ -1,0 +1,26 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+
+//Profile velocity
+Zref                0.15; //reference height[m] 
+Uref                 3; //reference velocity [m/s]   //Maximum
+
+  
+
+zDir                 (0 0 1); //vertical direction
+flowDir              (1 0 0); //flow direction
+kappa                0.41; //Von Karman's constant
+Cmu                  0.09; //Turbulent viscosity coefficient (0.09 as stantard constant)
+z0                   uniform 0.001;//surface roughness length [m]
+E                    9.8;  //Von Karman's constant
+zGround              uniform 0;//ground height or minimum z-coordinate [m] (displacement height)
+d                    uniform 0.0;
+
+//la velocidad de friccion la calcula a partir de estos datos
+
+// ************************************************************************* //

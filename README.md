@@ -9,7 +9,9 @@ In addition, regarding the software stack, CFD simulations have been performed i
 While the DLM has been trained on CTE-Power with Python 3.7.4, NumPy 1.18.4, Scikit-learn 0.23.1, and Keras 2.4 over Tensorflow 2.3.
 The code and datasets are available in https://github.com/siserte/HybridCFDML.
 
-From 31 cases with Uref profiles from 3 to 6 in 0.1 m/s, test dataset is composed of the following 7 cases:
+Dataset is composed of 31 cases with Uref profiles going from 3 to 6 in 0.1 m/s.
+
+Test subdataset is composed of the following 7 cases:
 
 Loading case 3.5
 

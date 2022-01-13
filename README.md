@@ -10,10 +10,17 @@ While the DLM has been trained on CTE-Power with Python 3.7.4, NumPy 1.18.4, Sci
 The code and datasets are available in https://github.com/siserte/HybridCFDML.
 
 From 31 cases with Uref profiles from 3 to 6 in 0.1 m/s, test dataset is composed of the following 7 cases:
+
 Loading case 3.5
+
 Loading case 5.8
+
 Loading case 4.7
+
 Loading case 3.3
+
 Loading case 5.5
+
 Loading case 5.3
+
 Loading case 4.9

@@ -90,23 +90,22 @@ if __name__ == "__main__":
     dimx = 117
     dimy = 86
     dimz = 38
-    dstpath = "output_dataset_250"
+    dstpath = "output_dataset_200"
     npzfile = "tmp_dataset"
     n_input = 3
     
     ### Configure these:
     n_output = 10
     of_tss = 10
-    #model_path = "VOLTA-lay-0-101"
-    #model_path = "MODCHAN10-0-150"
+    of_tss_ini = 3
     #model_path = "../surrogateModelContinuous/MODCHANFULL10-0-100"
-    model_path = "MODCHANFULL10-0-250"
+    model_path = "MODCHAN10-0-200"
     grain = 0.01
     DRYRUN = False       #Copy ts from an OF simulation instead of simulating them.
-    OFFIRST = False    #Start the execution simulating instead of predicting.
+    OFFIRST = True    #Start the execution simulating instead of predicting.
     CONTINUE = False     #Continue a previous execution instead of start from scratch.
     BREAKFIRST = False   #Run a single iteration: simulate (if OFFIRST), generate, predict, and regenerate.
-    srcpath = 'CASE_test_3.5_0.5'
+    srcpath = 'CASE_test_3.5_0.5_lite'
     last_ts = 7.01
 
     print("----------------------------------------------------------------------")
@@ -118,7 +117,7 @@ if __name__ == "__main__":
     first_ts = get_first_ts(srcpath)
     print("----------------------------------------------------------------------")
     end = time.time()
-    print("@@@TIMING - Init: ", end - starttotal)
+    print("@@@TimeInit: ", end - starttotal)
     start = time.time()
     print("----------------------------------------------------------------------")
 
@@ -128,7 +127,7 @@ if __name__ == "__main__":
     while float(ts_curr) < last_ts:
     
         if OFFIRST:
-            ts_end = "{:.2f}".format(float(ts_curr) + ((of_tss-1) * grain))
+            ts_end = "{:.2f}".format(float(ts_curr) + ((of_tss_ini-2) * grain))
             with open(dstpath + "/params", "w") as paramsfile:
                 paramsfile.write("ts_start\t%s;\nts_end\t%s;\n" % (ts_curr, ts_end))
             command = "pimpleFoam -case %s" % dstpath
@@ -143,6 +142,12 @@ if __name__ == "__main__":
             ts_curr = "{:.2f}".format(round(float(ts_end) + grain, 2))
             last_of = ts_end
             OFFIRST = False
+            
+            print("----------------------------------------------------------------------")     
+            end = time.time()
+            print("@@@TimeSimulation: ", end - start, "ts next: ", ts_curr)
+            start = time.time()
+            print("----------------------------------------------------------------------")
     
         command = "python 1-generate_dataset.py %s %s" % (dstpath, npzfile)
         print("\n$ %s\n" % (command))
@@ -157,7 +162,7 @@ if __name__ == "__main__":
         
         print("----------------------------------------------------------------------")     
         end = time.time()
-        print("@@@TIMING - Dataset: ", end - start, "ts next: ", ts_curr)
+        print("@@@TimeDataset: ", end - start, "ts next: ", ts_curr)
         start = time.time()
         print("----------------------------------------------------------------------")
 
@@ -174,7 +179,7 @@ if __name__ == "__main__":
 
         print("----------------------------------------------------------------------")
         end = time.time()
-        print("@@@TIMING - Prediction: ", end - start, "s. TS next: ", ts_curr)
+        print("@@@TimePrediction: ", end - start, "s. TS next: ", ts_curr)
         start = time.time()
         print("----------------------------------------------------------------------")
 
@@ -196,7 +201,7 @@ if __name__ == "__main__":
         
         print("----------------------------------------------------------------------")
         end = time.time()
-        print("@@@TIMING - Regenerate: ",  end - start, "s. TS next: ", ts_curr)
+        print("@@@TimeRegenerate: ",  end - start, "s. TS next: ", ts_curr)
         start = time.time()
         print("----------------------------------------------------------------------")
         
@@ -226,8 +231,14 @@ if __name__ == "__main__":
         
         print("----------------------------------------------------------------------")
         end = time.time()
-        print("@@@TIMING - Simulation: ", end - start)
+        print("@@@TimeSimulation: ", end - start)
         start = time.time()
+        print("----------------------------------------------------------------------")
+
+        print("----------------------------------------------------------------------")
+        end = time.time()
+        ts_curr = "{:.2f}".format(round(float(ts_end), 2))
+        print("@@@Time accumulated until ts %s: " % (ts_curr), end - starttotal)
         print("----------------------------------------------------------------------")
 
         print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")   
@@ -241,7 +252,7 @@ if __name__ == "__main__":
         
     print("----------------------------------------------------------------------")
     endtotal = time.time()
-    print("@@@TIMING - Total: ", endtotal - starttotal)
+    print("@@@TimeTotal: ", endtotal - starttotal)
     with open(dstpath + "/log", "w") as file:
         file.write(streamdata.decode())
     print("----------------------------------------------------------------------")

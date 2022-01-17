@@ -12,3 +12,7 @@ The code and datasets are available in https://github.com/siserte/HybridCFDML.
 Dataset is composed of 31 cases with Uref profiles going from 3 to 6 in 0.1 m/s.
 
 Test subdataset is composed of 7 cases corresponding to the following Uref profile velocities: 3.5, 5.8, 4.7, 3.3, 5.5, 5.3, 4.9 m/s
+
+The next example compares the same simulation executed with a traditional CFD solver (top), and the solution provided by the hybrid model (bottom):
+
+<img src="https://github.com/siserte/HybridCFDML/blob/main/cfd.gif" width="600" />

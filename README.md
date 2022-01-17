@@ -11,18 +11,4 @@ The code and datasets are available in https://github.com/siserte/HybridCFDML.
 
 Dataset is composed of 31 cases with Uref profiles going from 3 to 6 in 0.1 m/s.
 
-Test subdataset is composed of the following 7 cases:
-
-Loading case 3.5
-
-Loading case 5.8
-
-Loading case 4.7
-
-Loading case 3.3
-
-Loading case 5.5
-
-Loading case 5.3
-
-Loading case 4.9
+Test subdataset is composed of 7 cases corresponding to the following Uref profile velocities: 3.5, 5.8, 4.7, 3.3, 5.5, 5.3, 4.9 m/s

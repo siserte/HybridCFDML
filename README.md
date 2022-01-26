@@ -16,3 +16,5 @@ Test subdataset is composed of 7 cases corresponding to the following Uref profi
 The next example compares the same simulation executed with a traditional CFD solver (top), and the solution provided by the hybrid model (bottom):
 
 <!-- <img src="https://github.com/siserte/HybridCFDML/blob/main/cfd.gif" width="600" /> -->
+
+<img src="https://github.com/siserte/HybridCFDML/blob/main/cfd.gif" width="600" />

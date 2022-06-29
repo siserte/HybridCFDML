@@ -20,5 +20,6 @@ The next example compares the same simulation executed with a traditional CFD so
 <img src="https://github.com/siserte/HybridCFDML/blob/main/cfd.gif" width="600" />
 
 Create your conda environment with, for instance:
+
     $ conda env create -n hybridTF -f environment.yml
     $ conda activate hybridTF
